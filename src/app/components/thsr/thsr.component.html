@@ -1,0 +1,49 @@
+<div class="search">
+    <div class="search-from">
+        <select [(ngModel)]="stationFrom">
+            <option>-</option>
+            <option *ngFor="let s of stations | async" [ngValue]="s">{{ s.StationName.Zh_tw }}</option>
+        </select>
+    </div>
+    <div class="search-to">
+        <select [(ngModel)]="stationTo">
+            <option>-</option>
+            <option *ngFor="let s of stations | async" [ngValue]="s">{{ s.StationName.Zh_tw }}</option>
+        </select>
+    </div>
+    <div class="search-reverse">
+        <button (click)="reverse()">&lt;-&gt;</button>
+    </div>
+
+    <div class="search-date">
+        <input type="datetime-local" [(ngModel)]="date">
+    </div>
+
+    <div class="search-type">
+        <label>
+            <input type="radio" name="searchType" [(ngModel)]="searchType" value="出發">出發
+        </label>
+        <label>
+            <input type="radio" name="searchType" [(ngModel)]="searchType" value="抵達">抵達
+        </label>
+    </div>
+
+    <div class="search-button">
+        <button (click)="search()">Search</button>
+    </div>
+</div>
+<hr/>
+
+<div class="result">
+    <table>
+    <tbody>
+        <tr *ngFor="let t of timetables | async">
+            <td>{{ t.DailyTrainInfo.TrainNo }}</td>
+            <td>{{ t.OriginStopTime.DepartureTime }}</td>
+            <td>{{ t.DestinationStopTime.ArrivalTime }}</td>
+            <td>{{ t.DailyTrainInfo.Note.Zh_tw }}</td>
+            <td></td>
+        </tr>
+    </tbody>
+    </table>
+</div>

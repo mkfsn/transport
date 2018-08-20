@@ -1,12 +1,4 @@
-class NameType {
-    Zh_tw?: string; // 中文繁體名稱
-    En?: string; // 英文名稱
-}
-
-class PointType {
-    PositionLat?: number; // 位置緯度(WGS84)
-    PositionLon?: number; // 位置經度(WGS84)
-}
+import { NameType, PointType } from './misc';
 
 // ['0: 特等站', '1: 一等站', '2: 二等站', '3: 三等站', '4: 簡易站', '5: 招呼站', '6: 未知'];
 type StationClassType = 0 | 1 |  2 | 3 | 4 | 5 | 6;
