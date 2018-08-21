@@ -1,0 +1,30 @@
+language: node_js
+
+sudo: required
+
+node_js:
+  - "8"
+
+os:
+  - linux
+
+install:
+  - npm install
+
+script:
+  # Set Git config
+  - git config --global user.name "$GIT_NAME"
+  - git config --global user.email "$GIT_EMAIL"
+  - git config --global push.default simple
+  - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/mkfsn/transport public
+  # Generate Hexo static pages
+  - npm run build
+  - cd public
+  - git add -A .
+  - MESSAGE=`date +\ %Y-%m-%d\ %H:%M:%S`
+  - git commit -m "Site updated: $MESSAGE"
+  - git push --quiet
+
+branches:
+  only:
+  - master
