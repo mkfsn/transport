@@ -19,10 +19,10 @@ script:
   - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/mkfsn/transport public
   # Generate Hexo static pages
   - npm run build
-  - cd public
-  - git add -A .
-  - git commit -m "Site updated by Travis: $(date +%Y-%m-%d\ %H:%M:%S)"
-  - git push origin gh-pages --quiet
+  # - cd public
+  # - git add -A .
+  # - git commit -m "Site updated by Travis: $(date +%Y-%m-%d\ %H:%M:%S)"
+  # - git push origin gh-pages --quiet
 
 branches:
   only:
