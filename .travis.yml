@@ -3,26 +3,29 @@ language: node_js
 sudo: required
 
 node_js:
-  - "8"
+  - '8'
 
 os:
   - linux
 
+env:
+  global:
+    secure: T0w+AuK9lCKIBpQL0j6ssZJ3xWS25O1b8hkmiOE3xBIom9OxsqjVY2EPa7HvtLB7MlbUx0SV+KiWHO3FpVf8Z6OXyH7Qoo1Tm8UhEIzQrqHq7+ARpukKsGQABhwrrCMbwz5A4LOjyTxFedBcMit8eHAP11aPT9y/nbxCtbODabHBi8MGR5A4hSgm4Ke1D4rlHALhuM0wJe9hqc6hyco8rI7zOyx5WNn4gnUZmNfCCgcfYGEJYGQDl1w844qKUzWwGuCbkFAAzlV2NhF0/cvHtseAFV2tm2LRig/ICNzxGtOo730sKMpmlYmNLS+T7/lY2nKBSrxUXAExHSER11pJq3/FkWCr70XOPCyM4dSe6FJ3SfVOJUBsg0Cik7pmSe9QWPwyy+I/scyxbvuMtsvqaTRvTEXsStGaTxeHlT5hp2efxaHk5fD9Goqjz2VlHNnB4RsmkWvdEWrDC5FwhGcfhgFqe0mUpUhun6mwYucKcJnp08vf+3J1XsmPKaEIaQm9ni0BQF8WT6+MoblB1zeIH1zhV0RLbMPWsKfxp6tfdVnRTHI95eoq1JjffVJevKX7V54d0TWuMVKo+1ZZqrbdrhWBAioyhO1vDCot0/J7aWCVVNH0l1fZdX0le9c2cUU969PLjZcLwKZ9Yt1SK9tCh9v29SXGXqFCw3dsdVNu/Kk=
+
 install:
   - npm install
 
-script:
-  # Set Git config
+before_script:
   - git config --global user.name "$GIT_NAME"
   - git config --global user.email "$GIT_EMAIL"
   - git config --global push.default simple
   - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/mkfsn/transport public
-  # Generate Hexo static pages
+
+script:
   - npm run build
-  # - cd public
-  # - git add -A .
-  # - git commit -m "Site updated by Travis: $(date +%Y-%m-%d\ %H:%M:%S)"
-  # - git push origin gh-pages --quiet
+
+after_success:
+  - bash ./deploy.sh
 
 branches:
   only:
