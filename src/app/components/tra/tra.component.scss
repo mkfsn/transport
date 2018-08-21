@@ -1,3 +1,34 @@
 .search {
+    width: 50%;
+    margin: 0 auto;
+    max-width: 480px;
+
     display: grid;
+    grid-template-areas: "from from from reverse"
+                         "to   to   to   reverse"
+                         "date date type submit";
+
+    .search-from {
+        grid-area: from;
+    }
+
+    .search-to {
+        grid-area: to;
+    }
+
+    .search-reverse {
+        grid-area: reverse;
+    }
+
+    .search-date {
+        grid-area: date;
+    }
+
+    .search-type {
+        grid-area: type;
+    }
+
+    .search-submit {
+        grid-area: submit;
+    }
 }

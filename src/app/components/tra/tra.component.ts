@@ -25,6 +25,7 @@ export class TraComponent implements OnInit {
 
     constructor(private traService: TraService) {
         this.stations = this.traService.getStations();
+        this.searchType = '出發';
 
         const now = new Date();
         now.setHours(now.getHours() - now.getTimezoneOffset() / 60)
