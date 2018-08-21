@@ -18,6 +18,10 @@
 
     .search-reverse {
         grid-area: reverse;
+        button {
+            height: 3rem;
+            border-radius: 3px;
+        }
     }
 
     .search-date {
