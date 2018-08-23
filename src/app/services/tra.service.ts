@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { RailStation, RailODDailyTimetable, stations, timetables } from '../models/tra';
+import { RailStation, RailODDailyTimetable } from '../models/tra';
 
 import { Observable, of } from 'rxjs';
 import { map, share } from 'rxjs/operators';
