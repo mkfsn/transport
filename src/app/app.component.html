@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<nav class="navbar">
+    <div class="goto-tra" (click)="goto('tra')">TRA</div>
+    <div class="goto-thsr" (click)="goto('thsr')">THSR</div>
+    <div class="goto-favorite" (click)="goto('favorite')">Favorite</div>
+</nav>
+<main>
+    <router-outlet></router-outlet>
+</main>

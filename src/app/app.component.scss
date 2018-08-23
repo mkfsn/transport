@@ -1,0 +1,38 @@
+:host {
+    display: grid;
+    grid-template: "navbar" 3rem
+                   "." .5rem
+                   "main" auto / auto;
+
+    nav.navbar {
+        grid-area: navbar;
+        justify-content: center;
+        display: flex;
+        background-color: #fcfcfe;
+
+        div[class^="goto-"] {
+            padding: 5px;
+            cursor: pointer;
+            min-width: 7ch;
+            text-align: center;
+            line-height: calc(3rem - 10px);
+
+            &:hover {
+                background-color: #ebebeb;
+            }
+
+            &.active {
+                color: #777;
+                font-weight: 500;
+                border-bottom: 1px solid #0000ff;
+            }
+        }
+
+        border-bottom: 1px solid #efefef;
+        color: #acacad;
+    }
+
+    main {
+        grid-area: main;
+    }
+}
