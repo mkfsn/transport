@@ -6,7 +6,7 @@
     <input class="" type="text" [(ngModel)]="text" appAutofocus>
 </div>
 <div class="body" *ngIf="isOpen">
-    <div class="node" *ngFor="let node of filteredNodes" (click)="select(node)">
+    <div class="node" *ngFor="let node of filteredNodes" (click)="selectNode(node)">
         {{ node.StationName.Zh_tw }}
     </div>
     <div class="info" *ngIf="!nodes">

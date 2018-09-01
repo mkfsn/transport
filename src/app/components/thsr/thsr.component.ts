@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ThsrService } from '../../services/thsr.service';
@@ -27,7 +27,7 @@ export class ThsrComponent implements OnInit {
         this.stations = this.thsrService.getStations();
 
         const now = new Date();
-        now.setHours(now.getHours() - now.getTimezoneOffset() / 60)
+        now.setHours(now.getHours() - now.getTimezoneOffset() / 60);
         this.date = now.toISOString().slice(0, 16);
     }
 
@@ -48,29 +48,27 @@ export class ThsrComponent implements OnInit {
             return;
         }
 
-        console.debug('from:', this.stationFrom, 'to:', this.stationTo, 'type:', this.searchType);
-
         this.timetables = this.thsrService.getTimetables(this.stationFrom, this.stationTo, new Date(this.date)).pipe(
             map(tables => {
                 const compareFn = (a: RailODDailyTimetable, b: RailODDailyTimetable): number => {
                     const x = new Date(a.TrainDate + ' ' + a.OriginStopTime.DepartureTime),
                           y = new Date(b.TrainDate + ' ' + b.OriginStopTime.DepartureTime);
-                    if (x == y) {
+                    if (x === y) {
                         return 0;
                     } else if (x > y) {
                         return 1;
                     } else {
                         return -1;
                     }
-                }
+                };
 
                 const filterFn = (x: RailODDailyTimetable): boolean => {
-                    if (this.searchType == '出發') {
+                    if (this.searchType === '出發') {
                         return new Date(x.TrainDate + ' ' + x.OriginStopTime.DepartureTime) >= new Date(this.date);
-                    } else if (this.searchType == '抵達') {
+                    } else if (this.searchType === '抵達') {
                         return new Date(x.TrainDate + ' ' + x.DestinationStopTime.ArrivalTime) <= new Date(this.date);
                     }
-                }
+                };
 
                 return tables.filter(filterFn).sort(compareFn);
             }),

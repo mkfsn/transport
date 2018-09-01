@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, Renderer2 } from '@angular/core';
 
 import { Node } from '../../models/selector';
 
@@ -11,15 +11,15 @@ export class SelectorComponent implements OnInit {
 
     @Input() nodes: Node[];
     @Input() node: Node;
-    @Output() onSelect: EventEmitter<Node> = new EventEmitter();
+    @Output() select: EventEmitter<Node> = new EventEmitter();
 
     // state
     private isOpen: boolean;
     private text: string;
 
-    private clickedInside: boolean = false;
+    private clickedInside = false;
 
-    constructor(private elementRef: ElementRef, private renderer: Renderer) {
+    constructor(private elementRef: ElementRef, private renderer: Renderer2) {
         this.isOpen = false;
     }
 
@@ -34,8 +34,8 @@ export class SelectorComponent implements OnInit {
             }
             return this.nodes.filter(n => {
                 return n.name.indexOf(this.text) !== -1;
-            })
-        }
+            });
+        };
 
         return filterFn(this.text);
     }
@@ -53,9 +53,7 @@ export class SelectorComponent implements OnInit {
         this.clickedInside = false;
     }
 
-    ngOnInit() {
-        console.debug('init:', this.nodes);
-    }
+    ngOnInit() { }
 
     private open() {
         this.isOpen = true;
@@ -65,8 +63,8 @@ export class SelectorComponent implements OnInit {
         this.isOpen = false;
     }
 
-    private select(node: Node) {
-        this.onSelect.emit(node);
+    private selectNode(node: Node) {
+        this.select.emit(node);
         this.close();
     }
 

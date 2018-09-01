@@ -18,7 +18,7 @@ export class TraService {
     private paddingZero(n: number, length: number): string {
         const s = n.toString();
         return s.padStart(length, '0');
-    };
+    }
 
     getStations(): Observable<RailStation[]> {
         const url = 'https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$format=JSON';
@@ -29,8 +29,14 @@ export class TraService {
     }
 
     getTimetables(from: RailStation, to: RailStation, date = new Date()): Observable<RailODDailyTimetable[]> {
-        const formattedDate = `${this.paddingZero(date.getFullYear(), 4)}-${this.paddingZero(date.getMonth() + 1, 2)}-${this.paddingZero(date.getDate(), 2)}`;
-        const url = `https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/OD/${from.StationID}/to/${to.StationID}/${formattedDate}?$format=JSON`;
+        const [year, month, day] = [
+            this.paddingZero(date.getFullYear(), 4),
+            this.paddingZero(date.getMonth() + 1, 2),
+            this.paddingZero(date.getDate(), 2)
+        ];
+        const formattedDate = `${year}-${month}-${day}`;
+        const url = 'https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/OD/' +
+                    `${from.StationID}/to/${to.StationID}/${formattedDate}?$format=JSON`;
         return this.http.get(url).pipe(
             map((results: RawRailODDailyTimetable[]) => results.map(r => new RailODDailyTimetable(r)))
         );

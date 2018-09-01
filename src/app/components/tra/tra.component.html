@@ -2,13 +2,13 @@
     <div class="search-from">
         <app-selector [nodes]="stations | async"
                       [node]="stationFrom"
-                      (onSelect)="updateStationFrom($event)">
+                      (select)="updateStationFrom($event)">
         </app-selector>
     </div>
     <div class="search-to">
         <app-selector [nodes]="stations | async"
                       [node]="stationTo"
-                      (onSelect)="updateStationTo($event)">
+                      (select)="updateStationTo($event)">
         </app-selector>
     </div>
     <div class="search-reverse">

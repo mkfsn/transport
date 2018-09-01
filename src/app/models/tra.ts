@@ -85,23 +85,19 @@ class RailStation {
     }
 }
 
-class RailODDailyTimetable {
-    TrainDate: Date;
-    DailyTrainInfo: RailDailyTrainInfo;
-    OriginStopTime: RailStopTime;
-    DestinationStopTime: RailStopTime;
-    UpdateTime: Date;
+class RailStopTime {
+    StopSequence: number;
+    StationID: string;
+    StationName: NameType;
+    ArrivalTime: Date; // 到站時間(格式: HH:mm:ss)
+    DepartureTime: Date; // 離站時間(格式: HH:mm:ss)
 
-    constructor(raw: RawRailODDailyTimetable) {
-        this.TrainDate = new Date(raw.TrainDate);
-        this.DailyTrainInfo = new RailDailyTrainInfo(raw.DailyTrainInfo);
-        this.OriginStopTime = new RailStopTime(raw.TrainDate, raw.OriginStopTime);
-        this.DestinationStopTime = new RailStopTime(raw.TrainDate, raw.DestinationStopTime);
-        if (this.OriginStopTime.DepartureTime > this.DestinationStopTime.ArrivalTime) {
-            this.DestinationStopTime.ArrivalTime.setDate(1 + this.DestinationStopTime.ArrivalTime.getDate());
-            this.DestinationStopTime.DepartureTime.setDate(1 + this.DestinationStopTime.DepartureTime.getDate());
-        }
-        this.UpdateTime = new Date(raw.UpdateTime);
+    constructor(trainDate: string, raw: RawRailStopTime) {
+        this.StopSequence = raw.StopSequence;
+        this.StationID = raw.StationID;
+        this.StationName = new NameType(raw.StationName);
+        this.ArrivalTime = new Date(trainDate + ' ' + raw.ArrivalTime);
+        this.DepartureTime = new Date(trainDate + ' ' + raw.DepartureTime);
     }
 }
 
@@ -179,19 +175,23 @@ class RailDailyTrainInfo {
     }
 }
 
-class RailStopTime {
-    StopSequence: number;
-    StationID: string;
-    StationName: NameType;
-    ArrivalTime: Date; // 到站時間(格式: HH:mm:ss)
-    DepartureTime: Date; // 離站時間(格式: HH:mm:ss)
+class RailODDailyTimetable {
+    TrainDate: Date;
+    DailyTrainInfo: RailDailyTrainInfo;
+    OriginStopTime: RailStopTime;
+    DestinationStopTime: RailStopTime;
+    UpdateTime: Date;
 
-    constructor(trainDate: string, raw: RawRailStopTime) {
-        this.StopSequence = raw.StopSequence;
-        this.StationID = raw.StationID;
-        this.StationName = new NameType(raw.StationName);
-        this.ArrivalTime = new Date(trainDate + ' ' + raw.ArrivalTime);
-        this.DepartureTime = new Date(trainDate + ' ' + raw.DepartureTime);
+    constructor(raw: RawRailODDailyTimetable) {
+        this.TrainDate = new Date(raw.TrainDate);
+        this.DailyTrainInfo = new RailDailyTrainInfo(raw.DailyTrainInfo);
+        this.OriginStopTime = new RailStopTime(raw.TrainDate, raw.OriginStopTime);
+        this.DestinationStopTime = new RailStopTime(raw.TrainDate, raw.DestinationStopTime);
+        if (this.OriginStopTime.DepartureTime > this.DestinationStopTime.ArrivalTime) {
+            this.DestinationStopTime.ArrivalTime.setDate(1 + this.DestinationStopTime.ArrivalTime.getDate());
+            this.DestinationStopTime.DepartureTime.setDate(1 + this.DestinationStopTime.DepartureTime.getDate());
+        }
+        this.UpdateTime = new Date(raw.UpdateTime);
     }
 }
 
