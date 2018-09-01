@@ -1,0 +1,59 @@
+:host {
+    color: #000;
+    $gap: .5rem;
+
+    .head {
+        width: 13rem;
+        height: 2rem;
+        border: 1px solid #777;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        p {
+            margin: 0 $gap;
+        }
+
+        input {
+            width: calc(100% - #{$gap * 2});
+            padding: 0;
+            border: 0;
+            height: 100%;
+            padding-left: $gap;
+            padding-right: $gap;
+            font-size: 1rem;
+        }
+    }
+
+    .body {
+        position: absolute;
+        z-index: 1000;
+        background: white;
+        border-top: 0px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1;
+        width: 13rem;
+        height: 2rem;
+        border: 1px solid #777;
+        margin-top: -1px;
+        overflow-y: scroll;
+        height: 60vh;
+
+        &>div.node {
+            height: 2rem;
+            cursor: pointer;
+            padding: .3rem;
+            height: 1.4rem;
+            &:hover {
+                background-color: #999;
+            }
+        }
+
+        &>div.info {
+            height: 100%;
+            margin: .5rem;
+            color: grey;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+<div class="head" *ngIf="!isOpen" (click)="open()">
+    <p *ngIf="!node">請選擇</p>
+    <p *ngIf="node">{{ node.name }}</p>
+</div>
+<div class="head" *ngIf="isOpen">
+    <input class="" type="text" [(ngModel)]="text" appAutofocus>
+</div>
+<div class="body" *ngIf="isOpen">
+    <div class="node" *ngFor="let node of filteredNodes" (click)="select(node)">
+        {{ node.StationName.Zh_tw }}
+    </div>
+    <div class="info" *ngIf="!nodes">
+        <i>No Data</i>
+    </div>
+</div>

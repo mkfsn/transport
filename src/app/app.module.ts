@@ -8,12 +8,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TraComponent } from './components/tra/tra.component';
 import { ThsrComponent } from './components/thsr/thsr.component';
+import { SelectorComponent } from './components/selector/selector.component';
+import { AutofocusDirective } from './directives/autofocus.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     TraComponent,
-    ThsrComponent
+    ThsrComponent,
+    SelectorComponent,
+    AutofocusDirective
   ],
   imports: [
     BrowserModule,
