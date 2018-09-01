@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { RailStation, RailODDailyTimetable } from '../models/tra';
+import { RawRailStation, RailStation, RawRailODDailyTimetable, RailODDailyTimetable } from '../models/tra';
 
 import { Observable, of } from 'rxjs';
 import { map, share } from 'rxjs/operators';
@@ -23,7 +23,7 @@ export class TraService {
     getStations(): Observable<RailStation[]> {
         const url = 'https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/Station?$format=JSON';
         return this.http.get(url).pipe(
-            map((stations: RailStation[]) => stations),
+            map((results: RawRailStation[]) => results.map(r => new RailStation(r))),
             share()
         );
     }
@@ -32,7 +32,7 @@ export class TraService {
         const formattedDate = `${this.paddingZero(date.getFullYear(), 4)}-${this.paddingZero(date.getMonth() + 1, 2)}-${this.paddingZero(date.getDate(), 2)}`;
         const url = `https://ptx.transportdata.tw/MOTC/v2/Rail/TRA/DailyTimetable/OD/${from.StationID}/to/${to.StationID}/${formattedDate}?$format=JSON`;
         return this.http.get(url).pipe(
-            map((timetables: RailODDailyTimetable[]) => timetables)
+            map((results: RawRailODDailyTimetable[]) => results.map(r => new RailODDailyTimetable(r)))
         );
     }
 }
