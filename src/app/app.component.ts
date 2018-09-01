@@ -15,7 +15,7 @@ export class AppComponent {
         private renderer: Renderer2) {
     }
 
-    private goto(target: string) {
+    goto(target: string) {
         // Unset all active elements
         this.elementRef.nativeElement.querySelectorAll('nav > div[class^="goto-"]').forEach(e => {
             this.renderer.removeClass(e, 'active');

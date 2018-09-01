@@ -15,9 +15,9 @@ import { RailStation, RailODDailyTimetable } from '../../models/thsr';
 })
 export class ThsrComponent implements OnInit {
 
-    private date: string;
-    private stations: Observable<RailStation[]>;
-    private timetables: Observable<RailODDailyTimetable[]>;
+    date: string;
+    stations: Observable<RailStation[]>;
+    timetables: Observable<RailODDailyTimetable[]>;
 
     public stationFrom: RailStation;
     public stationTo: RailStation;
@@ -37,13 +37,13 @@ export class ThsrComponent implements OnInit {
         });
     }
 
-    private reverse() {
+    reverse() {
         const tmp = this.stationFrom;
         this.stationFrom = this.stationTo;
         this.stationTo = tmp;
     }
 
-    private search() {
+    search() {
         if (!this.stationFrom || !this.stationTo) {
             return;
         }

@@ -14,8 +14,8 @@ export class SelectorComponent implements OnInit {
     @Output() select: EventEmitter<Node> = new EventEmitter();
 
     // state
-    private isOpen: boolean;
-    private text: string;
+    isOpen: boolean;
+    text: string;
 
     private clickedInside = false;
 

@@ -22,7 +22,7 @@ before_script:
   - git clone --depth 1 --branch gh-pages https://$GH_TOKEN@github.com/mkfsn/transport public
 
 script:
-  - npm run build
+  - npm run gh-pages
 
 after_success:
   - bash ./deploy.sh

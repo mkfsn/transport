@@ -17,9 +17,10 @@ import { RailODDailyTimetable } from '../../models/tra';
 })
 export class TraComponent implements OnInit {
 
-    private date: string;
-    private stations: Observable<RailStation[]>;
-    private timetables: Observable<RailODDailyTimetable[]>;
+    // state
+    date: string;
+    stations: Observable<RailStation[]>;
+    timetables: Observable<RailODDailyTimetable[]>;
 
     private reverseIcon = faExchangeAlt;
 
@@ -38,13 +39,13 @@ export class TraComponent implements OnInit {
 
     ngOnInit() {}
 
-    private reverse() {
+    reverse() {
         const tmp = this.stationFrom;
         this.stationFrom = this.stationTo;
         this.stationTo = tmp;
     }
 
-    private search() {
+    search() {
         if (!this.stationFrom || !this.stationTo) {
             return;
         }
@@ -84,11 +85,11 @@ export class TraComponent implements OnInit {
         );
     }
 
-    private updateStationFrom(station: RailStation) {
+    updateStationFrom(station: RailStation) {
         this.stationFrom = station;
     }
 
-    private updateStationTo(station: RailStation) {
+    updateStationTo(station: RailStation) {
         this.stationTo = station;
     }
 
