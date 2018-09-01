@@ -49,8 +49,6 @@ export class TraComponent implements OnInit {
             return;
         }
 
-        console.debug('from:', this.stationFrom, 'to:', this.stationTo, 'type:', this.searchType);
-
         this.timetables = this.traService.getTimetables(this.stationFrom, this.stationTo, new Date(this.date)).pipe(
             map(tables => {
                 const compareFn = (a: RailODDailyTimetable, b: RailODDailyTimetable): number => {
@@ -67,15 +65,31 @@ export class TraComponent implements OnInit {
 
                 const filterFn = (x: RailODDailyTimetable): boolean => {
                     if (this.searchType == '出發') {
-                        return new Date(x.TrainDate + ' ' + x.OriginStopTime.DepartureTime) >= new Date(this.date);
+                        return x.OriginStopTime.DepartureTime >= new Date(this.date);
                     } else if (this.searchType == '抵達') {
-                        return new Date(x.TrainDate + ' ' + x.DestinationStopTime.ArrivalTime) <= new Date(this.date);
+                        return x.DestinationStopTime.ArrivalTime <= new Date(this.date);
                     }
                 }
 
-                return tables.filter(filterFn).sort(compareFn);
+                const result = tables.filter(filterFn).sort(compareFn);
+
+                result.forEach(v => {
+                    if (!v.DailyTrainInfo.TrainTypeName.Zh_tw) {
+                        console.log(v);
+                    }
+                })
+
+                return result;
             }),
         );
+    }
+
+    private updateStationFrom(station: RailStation) {
+        this.stationFrom = station;
+    }
+
+    private updateStationTo(station: RailStation) {
+        this.stationTo = station;
     }
 
 }

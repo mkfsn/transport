@@ -1,38 +1,99 @@
+svg {
+    stroke: #000;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+
+    height: 100%;
+    width: 100%;
+}
+
 .search {
     width: 50%;
     margin: 0 auto;
     max-width: 480px;
 
     display: grid;
-    grid-template-areas: "from from from reverse"
-                         "to   to   to   reverse"
-                         "date date type submit";
+    grid-template-areas: "from from reverse submit"
+                         "to   to   reverse submit"
+                         "date date type    type";
 
     .search-from {
+        $color: #487cfb;
+        display: flex;
+        align-items: center;
         grid-area: from;
+        color: $color;
+        &:before {
+            content: '出發站';
+            border-right: 2px solid $color;
+            padding-right: .5rem;
+            margin-right: .5rem;
+        }
     }
 
     .search-to {
+        $color: #7aaf6d;
+        display: flex;
+        align-items: center;
         grid-area: to;
+        color: $color;
+        &:before {
+            content: '到達站';
+            border-right: 2px solid $color;
+            padding-right: .5rem;
+            margin-right: .5rem;
+        }
     }
 
     .search-reverse {
         grid-area: reverse;
         button {
-            height: 3rem;
+            height: calc(4rem + 4px);
+            width: 2rem;
             border-radius: 3px;
+            display: block;
+            padding: 0;
         }
     }
 
     .search-date {
+        $color: orange;
         grid-area: date;
+        display: flex;
+        align-items: center;
+        color: $color;
+        &:before {
+            content: '時間';
+            border-right: 2px solid $color;
+            padding-left: 1rem;
+            padding-right: .5rem;
+            margin-right: .5rem;
+        }
+        input {
+            $gap: 5px;
+            height: 2rem;
+            border: 1px solid #777;
+            font-size: 1rem;
+            padding-left: $gap;
+            padding-right: $gap;
+            width: calc(13rem - #{$gap * 2});
+        }
     }
 
     .search-type {
         grid-area: type;
+        display: flex;
+        align-items: center;
     }
 
     .search-submit {
         grid-area: submit;
+        button {
+            height: calc(4rem + 4px);
+            width: calc(4rem + 4px);
+            border-radius: 3px;
+        }
     }
 }

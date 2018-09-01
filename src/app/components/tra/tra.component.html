@@ -1,19 +1,25 @@
 <div class="search">
     <div class="search-from">
-        <select [(ngModel)]="stationFrom">
-            <option>-</option>
-            <option *ngFor="let s of stations | async" [ngValue]="s">{{ s.StationName.Zh_tw }}</option>
-        </select>
+        <app-selector [nodes]="stations | async"
+                      [node]="stationFrom"
+                      (onSelect)="updateStationFrom($event)">
+        </app-selector>
     </div>
     <div class="search-to">
-        <select [(ngModel)]="stationTo">
-            <option>-</option>
-            <option *ngFor="let s of stations | async" [ngValue]="s">{{ s.StationName.Zh_tw }}</option>
-        </select>
+        <app-selector [nodes]="stations | async"
+                      [node]="stationTo"
+                      (onSelect)="updateStationTo($event)">
+        </app-selector>
     </div>
     <div class="search-reverse">
         <button (click)="reverse()">
-            <fa-icon [icon]="reverseIcon" rotate="90" size="2x"></fa-icon>
+            <svg viewBox="0 0 60 120">
+                <line x1="15" y1="30" x2="45" y2="30"></line>
+                <line x1="45" y1="30" x2="45" y2="90"></line>
+                <line x1="15" y1="90" x2="45" y2="90"></line>
+                <polygon points="15,30 22,23 22,37" style="fill:black" />
+                <polygon points="15,90 22,83 22,97" style="fill:black" />
+            </svg>
         </button>
     </div>
 
@@ -40,7 +46,7 @@
     <table>
     <tbody>
         <tr *ngFor="let t of timetables | async">
-            <td>{{ t.DailyTrainInfo.TrainTypeName.Zh_tw }}</td>
+            <td>{{ t.DailyTrainInfo.TrainType }}</td>
             <td>{{ t.DailyTrainInfo.TrainNo }}</td>
             <td>{{ t.OriginStopTime.DepartureTime }}</td>
             <td>{{ t.DestinationStopTime.ArrivalTime }}</td>
