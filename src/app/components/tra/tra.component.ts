@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
-
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -21,8 +19,6 @@ export class TraComponent implements OnInit {
     date: string;
     stations: Observable<RailStation[]>;
     timetables: Observable<RailODDailyTimetable[]>;
-
-    private reverseIcon = faExchangeAlt;
 
     public stationFrom: RailStation;
     public stationTo: RailStation;
