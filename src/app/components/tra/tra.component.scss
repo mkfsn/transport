@@ -10,14 +10,14 @@ svg {
 }
 
 .search {
-    width: 50%;
     margin: 0 auto;
-    max-width: 480px;
 
     display: grid;
-    grid-template-areas: "from from reverse submit"
-                         "to   to   reverse submit"
-                         "date date type    type";
+    grid-template-areas: "from reverse submit"
+                         "to   reverse submit"
+                         "date type    type";
+    grid-template-columns: max-content;
+    justify-content: center;
 
     .search-from {
         $color: #487cfb;
@@ -25,11 +25,13 @@ svg {
         align-items: center;
         grid-area: from;
         color: $color;
-        &:before {
-            content: '出發站';
-            border-right: 2px solid $color;
-            padding-right: .5rem;
-            margin-right: .5rem;
+        @media (min-width: 360px) {
+            &:before {
+                content: '出發站';
+                border-right: 2px solid $color;
+                padding-right: .5rem;
+                margin-right: .5rem;
+            }
         }
     }
 
@@ -39,11 +41,13 @@ svg {
         align-items: center;
         grid-area: to;
         color: $color;
-        &:before {
-            content: '到達站';
-            border-right: 2px solid $color;
-            padding-right: .5rem;
-            margin-right: .5rem;
+        @media (min-width: 360px) {
+            &:before {
+                content: '到達站';
+                border-right: 2px solid $color;
+                padding-right: .5rem;
+                margin-right: .5rem;
+            }
         }
     }
 
@@ -64,12 +68,14 @@ svg {
         display: flex;
         align-items: center;
         color: $color;
-        &:before {
-            content: '時間';
-            border-right: 2px solid $color;
-            padding-left: 1rem;
-            padding-right: .5rem;
-            margin-right: .5rem;
+        @media (min-width: 360px) {
+            &:before {
+                content: '時間';
+                border-right: 2px solid $color;
+                padding-left: 1rem;
+                padding-right: .5rem;
+                margin-right: .5rem;
+            }
         }
         input {
             $gap: 5px;
@@ -78,7 +84,7 @@ svg {
             font-size: 1rem;
             padding-left: $gap;
             padding-right: $gap;
-            width: calc(13rem - #{$gap * 2});
+            width: calc(12rem - #{$gap * 2});
         }
     }
 
