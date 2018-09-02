@@ -10,6 +10,8 @@ import { TraComponent } from './components/tra/tra.component';
 import { ThsrComponent } from './components/thsr/thsr.component';
 import { SelectorComponent } from './components/selector/selector.component';
 import { AutofocusDirective } from './directives/autofocus.directive';
+import { AboutComponent } from './components/about/about.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AutofocusDirective } from './directives/autofocus.directive';
     TraComponent,
     ThsrComponent,
     SelectorComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    AboutComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
