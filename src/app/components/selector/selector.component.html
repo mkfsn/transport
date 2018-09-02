@@ -6,10 +6,12 @@
     <input class="" type="text" [(ngModel)]="text" appAutofocus>
 </div>
 <div class="body" *ngIf="isOpen">
-    <div class="node" *ngFor="let node of filteredNodes" (click)="selectNode(node)">
-        {{ node.StationName.Zh_tw }}
-    </div>
-    <div class="info" *ngIf="!nodes">
-        <i>No Data</i>
+    <div class="container">
+        <div class="node" *ngFor="let node of filteredNodes" (click)="selectNode(node)">
+            {{ node.StationName.Zh_tw }}
+        </div>
+        <div class="info" *ngIf="!nodes">
+            <i>No Data</i>
+        </div>
     </div>
 </div>

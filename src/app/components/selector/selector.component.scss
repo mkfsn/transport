@@ -26,34 +26,37 @@
     }
 
     .body {
-        position: absolute;
-        z-index: 1000;
-        background: white;
-        border-top: 0px;
-        display: flex;
-        flex-direction: column;
-        flex: 1 1;
-        width: 100%;
-        height: 2rem;
-        border: 1px solid #777;
-        margin-top: -1px;
-        overflow-y: scroll;
-        height: 60vh;
-
-        &>div.node {
+        position: relative;
+        .container {
+            position: absolute;
+            z-index: 1000;
+            background: white;
+            border-top: 0px;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1;
+            width: 100%;
             height: 2rem;
-            cursor: pointer;
-            padding: .3rem;
-            height: 1.4rem;
-            &:hover {
-                background-color: #999;
-            }
-        }
+            border: 1px solid #777;
+            margin-top: -1px;
+            overflow-y: scroll;
+            height: 60vh;
 
-        &>div.info {
-            height: 100%;
-            margin: .5rem;
-            color: grey;
+            &>div.node {
+                height: 2rem;
+                cursor: pointer;
+                padding: .3rem;
+                height: 1.4rem;
+                &:hover {
+                    background-color: #999;
+                }
+            }
+
+            &>div.info {
+                height: 100%;
+                margin: .5rem;
+                color: grey;
+            }
         }
     }
 }
