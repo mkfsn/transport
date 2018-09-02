@@ -25,6 +25,9 @@ svg {
         align-items: center;
         grid-area: from;
         color: $color;
+        app-selector {
+            width: 12rem;
+        }
         @media (min-width: 360px) {
             &:before {
                 content: '出發站';
@@ -41,6 +44,9 @@ svg {
         align-items: center;
         grid-area: to;
         color: $color;
+        app-selector {
+            width: 12rem;
+        }
         @media (min-width: 360px) {
             &:before {
                 content: '到達站';
