@@ -18,6 +18,7 @@ svg {
                          "date type    type";
     grid-template-columns: max-content;
     justify-content: center;
+    grid-column-gap: 5px;
 
     .search-from {
         $color: #487cfb;
